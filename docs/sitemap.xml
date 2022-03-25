@@ -2,17 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://sigma95467.github.io/NextBlog/fianal/</loc>
+    <lastmod>2022-03-25T17:10:22+08:00</lastmod>
+  </url><url>
+    <loc>https://sigma95467.github.io/NextBlog/tags/git/</loc>
+    <lastmod>2022-03-25T13:56:19+08:00</lastmod>
+  </url><url>
+    <loc>https://sigma95467.github.io/NextBlog/tags/git-worktree/</loc>
+    <lastmod>2022-03-25T13:56:19+08:00</lastmod>
+  </url><url>
+    <loc>https://sigma95467.github.io/NextBlog/posts/test/</loc>
+    <lastmod>2022-03-25T13:56:19+08:00</lastmod>
+  </url><url>
     <loc>https://sigma95467.github.io/NextBlog/posts/my-first-post/</loc>
     <lastmod>2022-03-25T13:56:19+08:00</lastmod>
   </url><url>
     <loc>https://sigma95467.github.io/NextBlog/posts/</loc>
     <lastmod>2022-03-25T13:56:19+08:00</lastmod>
   </url><url>
+    <loc>https://sigma95467.github.io/NextBlog/tags/scm/</loc>
+    <lastmod>2022-03-25T13:56:19+08:00</lastmod>
+  </url><url>
+    <loc>https://sigma95467.github.io/NextBlog/tags/</loc>
+    <lastmod>2022-03-25T13:56:19+08:00</lastmod>
+  </url><url>
     <loc>https://sigma95467.github.io/NextBlog/</loc>
     <lastmod>2022-03-25T13:56:19+08:00</lastmod>
   </url><url>
     <loc>https://sigma95467.github.io/NextBlog/categories/</loc>
-  </url><url>
-    <loc>https://sigma95467.github.io/NextBlog/tags/</loc>
   </url>
 </urlset>

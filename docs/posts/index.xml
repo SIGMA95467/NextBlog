@@ -8,6 +8,15 @@
     <language>zh-cn</language>
     <lastBuildDate>Fri, 25 Mar 2022 13:56:19 +0800</lastBuildDate><atom:link href="https://sigma95467.github.io/NextBlog/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>My  Post</title>
+      <link>https://sigma95467.github.io/NextBlog/posts/test/</link>
+      <pubDate>Fri, 25 Mar 2022 13:56:19 +0800</pubDate>
+      
+      <guid>https://sigma95467.github.io/NextBlog/posts/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>My First Post</title>
       <link>https://sigma95467.github.io/NextBlog/posts/my-first-post/</link>
       <pubDate>Fri, 25 Mar 2022 13:56:19 +0800</pubDate>
