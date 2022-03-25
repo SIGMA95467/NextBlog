@@ -1,0 +1,11 @@
+baseURL = 'https://sigma95467.github.io/NextBlog/'
+theme = "paper"
+languageCode = 'zh-cn'
+title = '正在发呆'
+publishDir = 'docs'
+
+disqusShortname = 'kickees39'   # add disqus comments
+
+[params]
+  disableHLJS = true                         # don't use highlight.js
+  github = 'SIGMA95467'                  # github.com/YOUR_GITHUB_ID
