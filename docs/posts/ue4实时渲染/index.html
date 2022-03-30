@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+<title>UE4实时渲染</title>
+<meta name="description" 
+      content=""
+>
+
+  
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXX-XX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXXXXX-XX');
+  </script>
+  
+
+
+  
+  <script data-goatcounter="https://stats.domain.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+
+  
+  
+  
+  <script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+   
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+      var u="//stats.domain.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '123']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+  
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  href="https://sigma95467.github.io/NextBlog/index.xml"
+  title="(。・∀・)ノ"
+/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UE4实时渲染"/>
+<meta name="twitter:description" content=""/>
+
+
+
+<link rel="stylesheet" href="https://sigma95467.github.io/NextBlog/fontawesome/css/all.min.css" />
+
+
+
+
+<link
+  crossorigin="anonymous"
+  href="/NextBlog/css/styles.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+
+
+<link
+  id="dark-mode-theme"
+  crossorigin="anonymous"
+  href="/NextBlog/css/dark.min.css"
+  integrity=""
+  rel="preload stylesheet"
+  as="style"
+/>
+
+
+<script>
+  var darkTheme = document.getElementById('dark-mode-theme')
+  var storedTheme = localStorage.getItem('dark-mode-storage')
+
+  if (storedTheme === 'dark') {
+    darkTheme.disabled = false
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
+</script>
+
+
+<script defer crossorigin="anonymous" src="/NextBlog/js/theme.js" integrity=""></script>
+
+
+<script defer crossorigin="anonymous" src="/NextBlog/js/instantpage.min.js" integrity=""></script><meta name="generator" content="Hugo 0.95.0" />
+  </head>
+  <body>
+    
+  
+
+
+
+
+  <header>
+    <nav class="navbar">
+  <div class="nav">
+    
+      <a href="https://sigma95467.github.io/NextBlog/" class="nav-logo">
+        <img
+          src="https://sigma95467.github.io/NextBlog/images/logo.png"
+          width="85"
+          height="85"
+          alt="Logo"
+        />
+      </a>
+    
+
+    <ul class="nav-links">
+      
+        
+          <li>
+            <a href="/NextBlog/about/" id="About"
+              ><em class="fas fa-user fa-lg"></em
+            ></a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/NextBlog/tags" id="Tags"
+              ><em class="fas fa-tag fa-lg"></em
+            ></a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/NextBlog/categories" id="Category"
+              ><em class="fas fa-folder-open fa-lg"></em
+            ></a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/NextBlog/search" id="Search"
+              ><em class="fas fa-search fa-lg"></em
+            ></a>
+          </li>
+          
+      
+        
+          <li>
+            <a href="/NextBlog/archives" id="Archives"
+              ><em class="fas fa-archive fa-lg"></em
+            ></a>
+          </li>
+          
+      
+    </ul>
+  </div>
+</nav>
+
+    <div class="intro-header">
+      <div class="container">
+        <div class="posts-heading">
+          
+            <h1>
+              UE4实时渲染
+            </h1>
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+    
+  <div class="container" role="main">
+    <article class="article" class="blog-post">
+      
+  <h2 id="基础知识">基础知识</h2>
+<h3 id="可延展性">可延展性</h3>
+<p>在应用程序运行时改变画面渲染效果，提升或者降低帧率等，可使应用移植到不同设备上。</p>
+<h3 id="延迟渲染和前向渲染">延迟渲染和前向渲染</h3>
+<ul>
+<li>游戏大作一般用延迟渲染，手机、VR一般用前向渲染</li>
+<li>前向渲染支持MSAA，而延迟渲染只能用TAA（会在画面中看到重影）</li>
+<li>延迟渲染需要用到G-Buffer，包含渲染管线后期需要的所有信息</li>
+</ul>
+<h2 id="实时渲染性能">实时渲染性能</h2>
+<p>CPU渲染：</p>
+<ul>
+<li>处理场景、应用中的位置、旋转、变换</li>
+<li>计算动画、物理效果、碰撞、人工智能</li>
+<li>确定程序运行期间对象生成与销毁</li>
+</ul>
+<p>GPU渲染：</p>
+<ul>
+<li>光照、模型自身的渲染、反射、着色器</li>
+</ul>
+<p>两种渲染是同时发生的</p>
+<h3 id="像素着色器的开销">像素着色器的开销</h3>
+<ul>
+<li>每加一层半透明效果就要重新计算像素颜色，每个材质都会添加要与其后像素混合的新图层。</li>
+<li>屏幕上需要着色的像素数量。在远处时，屏幕需要着色着色像素较少，开销更小。</li>
+</ul>
+<h3 id="场景渲染方式">场景渲染方式</h3>
+<p>引擎不会逐像素渲染，而是逐对象渲染，一个接一个模型渲染，逐渐渲染出整幅画面。</p>
+<p>引擎以drawcall为单位进行渲染，渲染开销不取决于多边形数量，而是drawcall的次数，例如彩色低模雕像（有多种材质，每种材质都意味着一次drawcall）的drawcall比高模雕像更多</p>
+<h3 id="动态阴影">动态阴影</h3>
+<p>动态阴影会随着场景多变形数量增多而产生更大开销，如果使用大量动态光照就需要注意场景中的多边形数量对性能的影响。</p>
+<h2 id="基础知识-1">基础知识</h2>
+<h3 id="可延展性-1">可延展性</h3>
+<p>在应用程序运行时改变画面渲染效果，提升或者降低帧率等，可使应用移植到不同设备上。</p>
+<h3 id="延迟渲染和前向渲染-1">延迟渲染和前向渲染</h3>
+<ul>
+<li>游戏大作一般用延迟渲染，手机、VR一般用前向渲染</li>
+<li>前向渲染支持MSAA，而延迟渲染只能用TAA（会在画面中看到重影）</li>
+<li>延迟渲染需要用到G-Buffer，包含渲染管线后期需要的所有信息</li>
+</ul>
+<h2 id="实时渲染性能-1">实时渲染性能</h2>
+<p>CPU渲染：</p>
+<ul>
+<li>处理场景、应用中的位置、旋转、变换</li>
+<li>计算动画、物理效果、碰撞、人工智能</li>
+<li>确定程序运行期间对象生成与销毁</li>
+</ul>
+<p>GPU渲染：</p>
+<ul>
+<li>光照、模型自身的渲染、反射、着色器</li>
+</ul>
+<p>两种渲染是同时发生的</p>
+<h3 id="像素着色器的开销-1">像素着色器的开销</h3>
+<ul>
+<li>每加一层半透明效果就要重新计算像素颜色，每个材质都会添加要与其后像素混合的新图层。</li>
+<li>屏幕上需要着色的像素数量。在远处时，屏幕需要着色着色像素较少，开销更小。</li>
+</ul>
+<h3 id="场景渲染方式-1">场景渲染方式</h3>
+<p>引擎不会逐像素渲染，而是逐对象渲染，一个接一个模型渲染，逐渐渲染出整幅画面。</p>
+<p>引擎以drawcall为单位进行渲染，渲染开销不取决于多边形数量，而是drawcall的次数，例如彩色低模雕像（有多种材质，每种材质都意味着一次drawcall）的drawcall比高模雕像更多</p>
+<h3 id="动态阴影-1">动态阴影</h3>
+<p>动态阴影会随着场景多变形数量增多而产生更大开销，如果使用大量动态光照就需要注意场景中的多边形数量对性能的影响。基础知识</p>
+<h3 id="可延展性-2">可延展性</h3>
+<p>在应用程序运行时改变画面渲染效果，提升或者降低帧率等，可使应用移植到不同设备上。</p>
+<h3 id="延迟渲染和前向渲染-2">延迟渲染和前向渲染</h3>
+<ul>
+<li>游戏大作一般用延迟渲染，手机、VR一般用前向渲染</li>
+<li>前向渲染支持MSAA，而延迟渲染只能用TAA（会在画面中看到重影）</li>
+<li>延迟渲染需要用到G-Buffer，包含渲染管线后期需要的所有信息</li>
+</ul>
+<h2 id="实时渲染性能-2">实时渲染性能</h2>
+<p>CPU渲染：</p>
+<ul>
+<li>处理场景、应用中的位置、旋转、变换</li>
+<li>计算动画、物理效果、碰撞、人工智能</li>
+<li>确定程序运行期间对象生成与销毁</li>
+</ul>
+<p>GPU渲染：</p>
+<ul>
+<li>光照、模型自身的渲染、反射、着色器</li>
+</ul>
+<p>两种渲染是同时发生的</p>
+<h3 id="像素着色器的开销-2">像素着色器的开销</h3>
+<ul>
+<li>每加一层半透明效果就要重新计算像素颜色，每个材质都会添加要与其后像素混合的新图层。</li>
+<li>屏幕上需要着色的像素数量。在远处时，屏幕需要着色着色像素较少，开销更小。</li>
+</ul>
+<h3 id="场景渲染方式-2">场景渲染方式</h3>
+<p>引擎不会逐像素渲染，而是逐对象渲染，一个接一个模型渲染，逐渐渲染出整幅画面。</p>
+<p>引擎以drawcall为单位进行渲染，渲染开销不取决于多边形数量，而是drawcall的次数，例如彩色低模雕像（有多种材质，每种材质都意味着一次drawcall）的drawcall比高模雕像更多</p>
+<h3 id="动态阴影-2">动态阴影</h3>
+<p>动态阴影会随着场景多变形数量增多而产生更大开销，如果使用大量动态光照就需要注意场景中的多边形数量对性能的影响。基础知识</p>
+<h3 id="可延展性-3">可延展性</h3>
+<p>在应用程序运行时改变画面渲染效果，提升或者降低帧率等，可使应用移植到不同设备上。</p>
+<h3 id="延迟渲染和前向渲染-3">延迟渲染和前向渲染</h3>
+<ul>
+<li>游戏大作一般用延迟渲染，手机、VR一般用前向渲染</li>
+<li>前向渲染支持MSAA，而延迟渲染只能用TAA（会在画面中看到重影）</li>
+<li>延迟渲染需要用到G-Buffer，包含渲染管线后期需要的所有信息</li>
+</ul>
+<h2 id="实时渲染性能-3">实时渲染性能</h2>
+<p>CPU渲染：</p>
+<ul>
+<li>处理场景、应用中的位置、旋转、变换</li>
+<li>计算动画、物理效果、碰撞、人工智能</li>
+<li>确定程序运行期间对象生成与销毁</li>
+</ul>
+<p>GPU渲染：</p>
+<ul>
+<li>光照、模型自身的渲染、反射、着色器</li>
+</ul>
+<p>两种渲染是同时发生的</p>
+<h3 id="像素着色器的开销-3">像素着色器的开销</h3>
+<ul>
+<li>每加一层半透明效果就要重新计算像素颜色，每个材质都会添加要与其后像素混合的新图层。</li>
+<li>屏幕上需要着色的像素数量。在远处时，屏幕需要着色着色像素较少，开销更小。</li>
+</ul>
+<h3 id="场景渲染方式-3">场景渲染方式</h3>
+<p>引擎不会逐像素渲染，而是逐对象渲染，一个接一个模型渲染，逐渐渲染出整幅画面。</p>
+<p>引擎以drawcall为单位进行渲染，渲染开销不取决于多边形数量，而是drawcall的次数，例如彩色低模雕像（有多种材质，每种材质都意味着一次drawcall）的drawcall比高模雕像更多</p>
+<h3 id="动态阴影-3">动态阴影</h3>
+<p>动态阴影会随着场景多变形数量增多而产生更大开销，如果使用大量动态光照就需要注意场景中的多边形数量对性能的影响。</p>
+
+
+
+      
+        <div class="blog-tags">
+          
+            <a
+              href="https://sigma95467.github.io/NextBlog/tags/ue4/"
+              >UE4</a
+            >&nbsp;
+          
+        </div>
+      
+
+      
+    </article>
+    
+    
+  </div>
+
+    <footer>
+  
+
+<div class="social-icons">
+  
+    
+    
+      
+      <a href="https://github.com/SIGMA95467" name="Github">
+        <em class="fab fa-github"></em>
+      </a>
+    
+  
+
+  
+</div>
+
+
+  
+  <div class="container">
+    <p class="credits copyright">
+      <a href="https://sigma95467.github.io/NextBlog/about">kickees39</a>
+      &nbsp;&copy;
+      2022
+      
+        &nbsp;/&nbsp;
+        <a href="https://sigma95467.github.io/NextBlog/">(。・∀・)ノ</a>
+      
+      &nbsp;&ndash;&nbsp;
+      <em class="fas fa-moon" id="dark-mode-toggle"></em>
+    </p>
+
+    <p class="credits theme-by">
+       <a href="https://gohugo.io">Hugo</a>&nbsp;
+      
+      <a href="https://github.com/matsuyoshi30/harbor">Harbor</a>
+    </p>
+  </div>
+</footer>
+
+  </body>
+</html>
