@@ -2,7 +2,7 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
-<title>scm</title>
+<title>Search</title>
 <meta name="description" 
       content=""
 >
@@ -52,7 +52,7 @@
   title="(。・∀・)ノ"
 />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="scm"/>
+<meta name="twitter:title" content="Search"/>
 <meta name="twitter:description" content=""/>
 
 
@@ -98,7 +98,15 @@
 <script defer crossorigin="anonymous" src="/NextBlog/js/theme.js" integrity=""></script>
 
 
-<script defer crossorigin="anonymous" src="/NextBlog/js/instantpage.min.js" integrity=""></script><meta name="generator" content="Hugo 0.95.0" />
+<script defer crossorigin="anonymous" src="/NextBlog/js/instantpage.min.js" integrity=""></script>
+  <script defer crossorigin="anonymous" src="/NextBlog/js/flexsearch.bundle.js" integrity=""></script>
+
+  
+  
+
+  
+  
+  <script defer crossorigin="anonymous" src="/NextBlog/js/zh-cn.search.29fd86d69a014ccad4306f51e181e10a2d8e510cdcf2729ca548a85ead507f4d.js" integrity="sha256-Kf2G1poBTMrUMG9R4YHhCi2OUQzc8nKcpUioXq1Qf00="></script><meta name="generator" content="Hugo 0.95.0" />
   </head>
   <body>
     
@@ -169,10 +177,10 @@
 
     <div class="intro-header">
       <div class="container">
-        <div class="tags-heading">
+        <div class="page-heading">
           
             <h1>
-              scm
+              Search
             </h1>
           
           
@@ -183,36 +191,15 @@
   
 
     
-  <div class="container" role="main">
-    <div class="posts-list">
-      
-        
-      
-
-      
-        <article class="post-preview">
-  <a href="https://sigma95467.github.io/NextBlog/posts/my-first-post/">
-    <h2 class="post-title">My First Post</h2>
-  </a>
-  <div class="post-entry">
-    
+  <div class="searchBoxContainer">
+    <input
+      type="text"
+      id="searchBox"
+      class="searchBox"
+      placeholder=""
+    />
   </div>
-
-  <div class="postmeta">
-    <span class="meta-post">
-  <em class="fa fa-calendar-alt"></em
-  >&nbsp;Mar 25, 2022
-  
-</span>
-
-  </div>
-</article>
-
-      
-    </div>
-    
-  </div>
-
+  <div id="searchResults" class="searchResults"></div>
     <footer>
   
 
