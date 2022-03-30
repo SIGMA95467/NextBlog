@@ -1,9 +1,0 @@
-[submodule "kickees39/themes/paper"]
-	path = /themes/paper
-	url = https://github.91chi.fun//https://github.com/nanxiaobei/hugo-paper.git
-[submodule "kickees39/themes/harbor"]
-	path = /themes/harbor
-	url = https://github.91chi.fun//https://github.com/matsuyoshi30/harbor.git
-[submodule "themes/harbor"]
-	path = themes/harbor
-	url = https://github.91chi.fun//https://github.com/matsuyoshi30/harbor.git
