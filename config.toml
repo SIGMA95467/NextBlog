@@ -16,18 +16,19 @@ googleAnalytics = "UA-XXXXXXXX-XX"
 # and disqus too.
 
 
-[params.goatcounter]
-  domain="stats.domain.com"
+[permalinks]
+	post = "/:year/:month/:day/:filename/"
+	page = "/:filename/"
 
-[params.matomo]
-  domain="stats.domain.com"
-  id="123"
+[markup.goldmark.renderer]
+  unsafe = true
+
+[outputs]
+    section = ["JSON", "HTML"]
 
 [Author]
   name = "kickees39"
 
-[outputs]
-  section = ["JSON", "HTML"]
 
 [[params.nav]]
   identifier = "about"
@@ -76,3 +77,7 @@ googleAnalytics = "UA-XXXXXXXX-XX"
   width = 85
   height = 85
   alt = "Logo"
+
+[params]
+mainSections = ["post"]
+favicon = "favicon.ico"
