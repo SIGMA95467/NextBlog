@@ -1,3 +1,6 @@
-[submodule "harbor"]
-	path = harbor
+[submodule "kickees39/themes/paper"]
+	path = kickees39/themes/paper
+	url = https://github.91chi.fun//https://github.com/nanxiaobei/hugo-paper.git
+[submodule "themes/themes/harbor"]
+	path = themes/themes/harbor
 	url = https://github.91chi.fun//https://github.com/matsuyoshi30/harbor.git
