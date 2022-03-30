@@ -15,6 +15,11 @@ publishDir = 'docs'
 googleAnalytics = "UA-XXXXXXXX-XX"
 # and disqus too.
 
+enableGitInfo = true
+[frontmatter]
+  lastmod = [':git', 'lastmod', ':fileModTime', ':default']
+  backtotop = true
+  toc = true
 
 [permalinks]
 	post = "/:year/:month/:day/:filename/"
@@ -42,28 +47,15 @@ googleAnalytics = "UA-XXXXXXXX-XX"
   name = "Tags"
   icon = "fas fa-tag fa-lg"
   url = "tags"
-  weight = 3
+  weight = 1
 
 [[params.nav]]
   identifier = "categories"
   name = "Category"
   icon = "fas fa-folder-open fa-lg"
   url = "categories"
-  weight = 3
+  weight = 2
 
-[[params.nav]]
-  identifier = "search"
-  name = "Search"
-  icon = "fas fa-search fa-lg"
-  url = "search"
-  weight = 3
-
-[[params.nav]]
-  identifier = "archives"
-  name = "Archives"
-  icon = "fas fa-archive fa-lg"
-  url = "archives"
-  weight = 3
 
 # copy paste this block and change for each social media to add how many ever social media
 # acounts/links you want
@@ -77,7 +69,3 @@ googleAnalytics = "UA-XXXXXXXX-XX"
   width = 85
   height = 85
   alt = "Logo"
-
-[params]
-mainSections = ["post"]
-favicon = "favicon.ico"
