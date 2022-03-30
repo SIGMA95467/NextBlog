@@ -8,7 +8,7 @@ draft: true
 disable_comments: false <!-- disable disqus -->
 ---
 
-
+<!--more-->
 
 ## 基础知识
 
