@@ -2,7 +2,7 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
-<title>[笔记]UE4实时渲染基础</title>
+<title>[笔记]UE4深度探索实时渲染</title>
 <meta name="description" 
       content=""
 >
@@ -30,8 +30,8 @@
   title="(。・∀・)ノ"
 />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[笔记]UE4实时渲染基础"/>
-<meta name="twitter:description" content="课程地址：https://learn.unrealengine.com/"/>
+<meta name="twitter:title" content="[笔记]UE4深度探索实时渲染"/>
+<meta name="twitter:description" content="实时渲染是一个损失性能的过程，你做的每一件事都是一种损耗，我们的目标是想方设法平稳达到目标帧率。"/>
 
 
 
@@ -134,7 +134,7 @@
         <div class="posts-heading">
           
             <h1>
-              [笔记]UE4实时渲染基础
+              [笔记]UE4深度探索实时渲染
             </h1>
           
           
@@ -148,38 +148,50 @@
   <div class="container" role="main">
     <article class="article" class="blog-post">
       
-  <p>课程地址：https://learn.unrealengine.com/</p>
-<h2 id="基础知识">基础知识</h2>
-<h3 id="可延展性">可延展性</h3>
-<p>在应用程序运行时改变画面渲染效果，提升或者降低帧率等，可使应用移植到不同设备上。</p>
-<h3 id="延迟渲染和前向渲染">延迟渲染和前向渲染</h3>
+  <p>实时渲染是一个损失性能的过程，你做的每一件事都是一种损耗，我们的目标是想方设法平稳达到目标帧率。</p>
+<p><img src="https://z4a.net/images/2022/03/30/hdRl7r0dYX.png" alt="hdRl7r0dYX.png"></p>
 <ul>
-<li>游戏大作一般用延迟渲染，手机、VR一般用前向渲染</li>
-<li>前向渲染支持MSAA，而延迟渲染只能用TAA（会在画面中看到重影）</li>
-<li>延迟渲染需要用到G-Buffer，包含渲染管线后期需要的所有信息</li>
+<li>
+<p>所有环节追求尽可能高效（废话</p>
+</li>
+<li>
+<p>严格的流程标准与限制</p>
+<p>先确定资源规格，再基于这些规格设计架构</p>
+</li>
+<li>
+<p>并非所有东西都是即使渲染，而是预渲染和实时渲染结合</p>
+</li>
+<li>
+<p>混合方案</p>
+<p><a href="https://z4a.net/image/2yvv2v"><img src="https://z4a.net/images/2022/03/30/ck0xK6XfD5.png" alt="ck0xK6XfD5.png"></a></p>
+</li>
 </ul>
-<h2 id="实时渲染性能">实时渲染性能</h2>
-<p>CPU渲染：</p>
+<h3 id="延迟渲染">延迟渲染</h3>
 <ul>
-<li>处理场景、应用中的位置、旋转、变换</li>
-<li>计算动画、物理效果、碰撞、人工智能</li>
-<li>确定程序运行期间对象生成与销毁</li>
+<li>每个阶段不会拥有之前阶段的信息</li>
+<li>擅长渲染动态光照、提供高质量的渲染画面</li>
+<li>可灵活调整渲染结果</li>
 </ul>
-<p>GPU渲染：</p>
+<h3 id="前向渲染">前向渲染</h3>
 <ul>
-<li>光照、模型自身的渲染、反射、着色器</li>
+<li>光照和着色不会被延迟，在渲染几何体时同时完成</li>
+<li>随着功能的增加，屏幕后画面会越来越复杂，不能灵活调整</li>
+<li>支持MSAA获得更好的抗锯齿</li>
+<li>因为在同一个环节完成，所以有个多信息来支持更灵活的光照</li>
+<li>前向渲染更适合渲染半透明</li>
 </ul>
-<p>两种渲染是同时发生的</p>
-<h3 id="像素着色器的开销">像素着色器的开销</h3>
-<ul>
-<li>每加一层半透明效果就要重新计算像素颜色，每个材质都会添加要与其后像素混合的新图层。</li>
-<li>屏幕上需要着色的像素数量。在远处时，屏幕需要着色着色像素较少，开销更小。</li>
-</ul>
-<h3 id="场景渲染方式">场景渲染方式</h3>
-<p>引擎不会逐像素渲染，而是逐对象渲染，一个接一个模型渲染，逐渐渲染出整幅画面。</p>
-<p>引擎以drawcall为单位进行渲染，渲染开销不取决于多边形数量，而是drawcall的次数，例如彩色低模雕像（有多种材质，每种材质都意味着一次drawcall）的drawcall比高模雕像更多</p>
-<h3 id="动态阴影">动态阴影</h3>
-<p>动态阴影会随着场景多变形数量增多而产生更大开销，如果使用大量动态光照就需要注意场景中的多边形数量对性能的影响。</p>
+<p>在真正渲染前，就会执行计算，图中30FPS意味着CPU与GPU有66ms延迟，但他们是同步的</p>
+<p>因为实时渲染，观察者会随时做出变化，所以在渲染前我们需要计算对象的具体位置，</p>
+<p>计算动画、模型和对象的位置、物理、AI、spawn、destroy等一切可能影响对象位置的因素</p>
+<p>虽然知道了对象位置，但我们不需要把所有对象都渲染出来，只需要渲染可见内容就行了。大多数工作由CPU完成，GPU也会处理一部分。</p>
+<p>遮挡阶段(Occlusion process)建立一张表记录所有可见对象和模型，<strong>逐对象</strong>进行遮挡</p>
+<p>执行顺序</p>
+<ol>
+<li>距离剔除(Distance Culling)</li>
+<li>视锥体剔除(Frustum Culling)</li>
+<li>可见性预计算(Precomputed Visibility)</li>
+<li>遮挡剔除(Occlusion Culling)</li>
+</ol>
 
 
 

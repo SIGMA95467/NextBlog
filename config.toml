@@ -16,6 +16,7 @@ googleAnalytics = "UA-XXXXXXXX-XX"
 # and disqus too.
 
 enableGitInfo = true
+
 [frontmatter]
   lastmod = [':git', 'lastmod', ':fileModTime', ':default']
   backtotop = true
